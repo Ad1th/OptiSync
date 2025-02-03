@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.background {
+  height: 100vh;
+  width: 100vw;
+}
+.front {
+  background-color: rgb(20, 20, 20);
+  height: 90vh;
+}
+.navbar {
+  height: 10vh;
+  width: 100vw;
+  background-color: rgb(33, 32, 32);
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.energy {
+  position: absolute;
+  left: 40vw;
+  font-weight: bolder;
+  font-size: 1.2rem;
+  color: white;
+}
+.energy::after {
+  content: "";
+}
+.energy:hover {
+  color: yellow;
+  transform: scale(1.2);
+}
+.pricing {
+  margin-left: 50vw;
+  font-weight: bolder;
+  font-size: large;
+  font-size: 1.2rem;
+  color: white;
+}
+.pricing:hover {
+  color: yellow;
+  transform: scale(1.2);
+}
+.about {
+  margin-left: 3vw;
+  font-weight: bolder;
+  font-size: large;
+  font-size: 1.2rem;
+  color: white;
+  transform: scale(1.2);
+}
+.about:hover {
+  color: yellow;
+  transition: transform(12);
+}
+.solution {
+  margin-left: 3vw;
+  font-weight: bolder;
+  font-size: large;
+  font-size: 1.2rem;
+  color: white;
+}
+.solution:hover {
+  color: rgb(255, 157, 0);
+  transition: transform(12);
+}
+
+.app {
+  margin-left: 3vw;
+  font-size: larger;
+  padding: 10px;
+  border: 1px solid rgb(255, 255, 255);
+  background-color: transparent;
+  color: rgb(255, 253, 252);
+  border-radius: 5px;
+}
+.app:hover {
+  color: rgb(255, 251, 251);
+  transform: scale(1.2);
+}
+.signin {
+  margin-left: 3vw;
+  font-size: larger;
+  background-color: rgb(250, 249, 249);
+  color: rgb(0, 0, 0);
+  padding: 10px;
+  border-radius: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  transition: 0.2s ease-in-out;
+}
+.signin:hover {
+  transform: scale(1.1);
+  transition: 0.2s ease-in-out;
+}
+.imgg {
+  object-fit: cover;
+  width: 100vw;
+  height: 90vh;
+}
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f4f4f4;
+}
+
+.container {
+  text-align: center;
+}
+
+input[type="text"] {
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
