@@ -1,0 +1,2 @@
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp0aXhuZ2htYm9yc3FqdGZ4bGpkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg1NzkyOTQsImV4cCI6MjA1NDE1NTI5NH0.RqjJXgh5khmPH8wktQ6DIMJWW5czjPVJmog2F4KB5fk"; // Replace with your Supabase Anon Key
+

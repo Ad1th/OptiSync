@@ -1,0 +1,134 @@
+/* Global Reset */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.background {
+  height: 1000vh;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+}
+
+/* Navbar Styles */
+.navbar {
+  background-color: rgb(255, 255, 255);
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgb(93, 68, 68);
+  box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.1);
+  z-index: 2; /* On top of the overlay */
+}
+
+/* Logo and Navbar items */
+.logo {
+  background-color: aqua;
+  height: 6vh;
+  width: 12vw;
+  margin-left: 10vw;
+}
+
+.energy,
+.soln,
+.entrp {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  padding: 10px;
+  font-size: large;
+  border: none;
+  color: rgb(0, 0, 0);
+  background-color: transparent;
+  margin-left: 1.5vw;
+}
+
+.energy:hover,
+.soln:hover,
+.entrp:hover {
+  outline: none;
+  color: gray;
+}
+
+.signin {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  padding: 12px 30px;
+  font-size: large;
+  border: none;
+  background-color: blue;
+  border-radius: 5px;
+  color: white;
+  margin-left: 25vw;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+}
+.login:hover {
+  transform: translateY(1.4px);
+  transition: transform 0.2s ease-in-out;
+}
+
+.aboutus {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  padding: 10px;
+  font-size: large;
+  border: none;
+  color: rgb(0, 0, 0);
+  background-color: transparent;
+  margin-left: 1.5vw;
+}
+
+/* Solution Container */
+.solution-cont {
+  background-color: black;
+  height: 65vh;
+  width: 50vw;
+  margin-left: 34vw;
+  margin-top: 1.2vh;
+  border-radius: 5px;
+  visibility: hidden;
+  z-index: 3; /* On top of the overlay */
+}
+
+/* Overlay that dims the background */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Transparent black */
+  z-index: 1; /* Below the navbar but above content */
+  display: none; /* Initially hidden */
+}
+.frontimg {
+  background-color: rgb(135, 122, 122);
+  height: 100vh;
+  width: 100vw;
+  margin-top: -67vh;
+  z-index: 1;
+  object-fit: cover;
+  position: relative;
+}
+.imgg {
+  object-fit: cover;
+  height: 100vh;
+  width: 100vw;
+}
+.text-overlay {
+  position: absolute;
+  top: 0;
+  margin-top: 20vh;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 10vw;
+  line-height: 10vh;
+  font-weight: bolder;
+  font-size: 6rem;
+  /* Prevent text from wrapping */
+  /* Hide text that is not yet typed */
+}
+.frontvid {
+  margin-top: 800vh;
+}
