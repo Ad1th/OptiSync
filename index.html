@@ -1,124 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="background">
-      <div class="navbar">
-        <div class="logo">
-          <img class="powerpal" src="logo sd.png" />
-          <h2 class="logoname">powerpal</h2>
-        </div>
-        <a href ="insights.html" class="energy"><span>Energy Insights
-            <i class="fa-solid fa-chevron-down"></i></a>
-        </span>
-        <span class="soln"
-          >Solution
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Cost Prediction</title>
+</head>
+<body>
+    <h1>Energy Cost Prediction Form</h1>
 
-          <i class="fa-solid fa-chevron-down"></i>
-        </span>
-        <span class="entrp">Resources</span>
-        <button class="signin">Login/Sign In</button>
-        <div class="aboutus">About Us</div>
-      </div>
+    <form id="predictionForm" onsubmit="event.preventDefault(); getPrediction();">
+        <label for="power">Power Consumption (kW):</label>
+        <input type="number" id="power" step="0.01" required><br><br>
 
-      <!-- Overlay for dimming the background -->
-      <div class="overlay"></div>
+        <label for="machines">Number of Machines:</label>
+        <input type="number" id="machines" required><br><br>
 
-      <!-- Solution container -->
-      <div class="solution-cont"></div>
+        <label for="employees">Number of Employees:</label>
+        <input type="number" id="employees" required><br><br>
 
-      <div class="frontimg">
-        <div class="text-overlay">
-          Revolutionizing Energy, One Watt at a Time
-        </div>
-        <div class="solution-inner">
-          <p class="l1">Powerpal for⚡</p>
-          <p class="indust">
-            <i class="fa-solid fa-briefcase"></i> Textile Industries
-          </p>
-          <p class="web1">Built to optimize energy consumption</p>
-          <p class="academ">
-            <i class="fa-solid fa-graduation-cap"></i>Academic Instituions
-          </p>
-          <p class="web2">Globalizing energy saving solutions</p>
-          <p class="agency"><i class="fa-solid fa-users"></i> Agencies</p>
-          <p class="web3">
-            Stay updated on energy regulations, tax benefits, and subsidies for
-            industries adopting energy-efficient solutions.
-          </p>
-        </div>
-        <div class="resource">
-          <p class="l1">Powerpal for⚡</p>
-          <p class="indust">
-            <i class="fa-solid fa-briefcase"></i> Industry Reports 📊
-          </p>
-          <p class="web1">
-            Access detailed reports on energy consumption patterns for textile,
-            manufacturing, and IT industries.
-          </p>
-          <p class="academ">
-            <i class="fa-solid fa-bolt"></i>Energy-Saving Tools ⚙️
-          </p>
-          <p class="web2">
-            Interactive calculators, AI-powered predictions, and automation
-            tools to optimize electricity use.
-          </p>
-          <p class="agency">
-            <i class="fa-solid fa-globe"></i> Government Policies & Incentives
-            🏛️
-          </p>
-          <p class="web3">
-            optimize energy usage, reduce costs, and enhance sustainability with
-            smart insights and AI-driven solutions.
-          </p>
-        </div>
-        <video
-          class="imgg"
-          src="techbg.mp4"
-          autoplay
-          loop
-          muted
-        ></video>
-      </div>
+        <label for="timestamp">Timestamp:</label>
+        <input type="number" id="timestamp" required><br><br>
 
-      <div class="pic1">
-        <button class="calc"><i class="fa-solid fa-calculator"></i></button>
-        <br><br><br>
-        <h3><p >Energy Consumption Calculator⚡</p></h3>
-      </div>
+        <h3>Mill Size:</h3>
+        <label><input type="checkbox" id="mill_small"> Small</label><br>
+        <label><input type="checkbox" id="mill_medium"> Medium</label><br>
+        <label><input type="checkbox" id="mill_large"> Large</label><br><br>
 
-      <div class="pic2">
-        <button class="robot"><i class="fa-solid fa-robot"></i></button>
-        <p class="two" AI Driven solutions></p>
-      </div>
+        <h3>Location:</h3>
+        <label><input type="checkbox" id="ankleshwar"> Ankleshwar</label><br>
+        <label><input type="checkbox" id="silvassa"> Silvassa</label><br>
+        <label><input type="checkbox" id="surat"> Surat</label><br>
+        <label><input type="checkbox" id="vapi"> Vapi</label><br><br>
 
-      <div class="pic3">
-        <button class="robots"><i class="fa-solid fa-chart-line"></i></button>
-        <br><br><br>
-        <h3>Understand our metrics</h3>
-      </div>
+        <button type="button" onclick="getPrediction()">Predict Bill Amount</button>
+    </form>
 
-      <div class="frontvid">
-        <video
-          class="vid"
-          src="windmill-animation.mp4"
-          autoplay
-          loop
-          muted
-        ></video>
-      </div>
-    </div>
+    <h2 id="predictionResult"></h2>
 
-    <script src="script.js"></script>
-  </body>
+    <script src="FastAPI_fetch.js"></script>
+</body>
 </html>

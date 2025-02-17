@@ -1,45 +1,65 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-import joblib
+import pickle
 import numpy as np
-
+from typing import Optional
+from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Change this to specific origins if needed
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-# Load ML model and scalers
-model = joblib.load("random_forest_model.pkl")
-scaler_x = joblib.load("scaler_x.pkl")
-scaler_y = joblib.load("scaler_y.pkl")
 
-# Updated Input Schema
-class InputData(BaseModel):
+# Load the ML model and scalers
+with open("random_forest_model.pkl", "rb") as model_file:
+    model = pickle.load(model_file)
+
+with open("scaler_x.pkl", "rb") as x_scaler_file:
+    x_scaler = pickle.load(x_scaler_file)
+
+with open("scaler_y.pkl", "rb") as y_scaler_file:
+    y_scaler = pickle.load(y_scaler_file)
+
+class PredictionInput(BaseModel):
     Power_Consumption_kW: float
-    Machines: float
-    Num_Employees: float
+    Machines: int
+    Num_Employees: int
     Timestamp: float
     Mill_Size_Medium: bool
     Mill_Size_Small: bool
-    Mill_Size_Large: bool        # Added this line
+    Mill_Size_Large: Optional[bool] = False  # Kept here but not used in ML input
     Location_Ankleshwar: bool
     Location_Silvassa: bool
-    Location_Surat: bool 
-    Location_Vapi: bool 
+    Location_Surat: bool
+    Location_Vapi: bool
 
 @app.post("/predict")
-def predict(data: InputData):
-    # Convert input to numpy array
-    features = np.array([[data.Power_Consumption_kW, data.Machines, data.Num_Employees,
-                          data.Timestamp, data.Mill_Size_Medium, data.Mill_Size_Small,
-                          data.Mill_Size_Large,                        # Added this line
-                          data.Location_Ankleshwar, data.Location_Silvassa,
-                          data.Location_Surat, data.Location_Vapi]])
+async def predict(input_data: PredictionInput):
+    try:
+        input_array = np.array([
+            input_data.Power_Consumption_kW,
+            input_data.Machines,
+            input_data.Num_Employees,
+            input_data.Timestamp,
+            int(input_data.Mill_Size_Medium),
+            int(input_data.Mill_Size_Small),
+            # Removed Mill_Size_Large (it was already one-hot encoded)
+            int(input_data.Location_Ankleshwar),
+            int(input_data.Location_Silvassa),
+            int(input_data.Location_Surat),
+            int(input_data.Location_Vapi)
+        ]).reshape(1, -1)
 
-    # Scale input features
-    scaled_features = scaler_x.transform(features)
+        # Apply the scalers
+        scaled_input = x_scaler.transform(input_array)
+        scaled_prediction = model.predict(scaled_input)
+        prediction = y_scaler.inverse_transform(scaled_prediction.reshape(-1, 1))[0][0]
 
-    # Make prediction (scaled output)
-    scaled_prediction = model.predict(scaled_features)
-
-    # Convert back to real bill amount
-    final_prediction = scaler_y.inverse_transform(scaled_prediction.reshape(-1, 1))
-
-    return {"prediction": round(final_prediction[0][0], 2)}
+        return {"prediction": float(round(prediction, 2))}
+    
+    except Exception as e:
+        return {"error": str(e)}
